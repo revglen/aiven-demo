@@ -47,8 +47,7 @@ The solution uploaded consists of 3 folders that are explained below
 
 A high-level view of the architecture is shown below
 
-![](media/image1.png){width="6.239057305336833in"
-height="3.7221795713035872in"}
+![Architecture](architecture.png "Architecture Overview")
 
 **Prerequisites**
 
