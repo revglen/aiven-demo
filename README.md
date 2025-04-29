@@ -200,3 +200,13 @@ The postgres folder contains the outoput of 3 tables that were generated from ou
     -   Adjust shard count based on data volume
 
     -   Configure index lifecycle management
+
+**Challenges encountered**
+
+1.  Download of Certificates through Terraform:
+
+    -   I was not able to find a way to download the SSL certificates from Aiven platform through Terraform hence I leveraged the Aiven CLI command to download the certificates
+
+2.  OpenSearch Certification Verification: 
+
+    -   While trying to connecting to OpenSearch to ingest the data into the index. The OpenSearch python class was not able to verify the certificates that were downloaded from the Aiven playform. Alhough I spent a signficiant time and trying multiple options I was not able to get the OpenSearch verify the certificate. Hence for this demo, I have disbaled cerificate verificaton (use_ssl=True). This is not recommended in production
