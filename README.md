@@ -163,6 +163,16 @@ A high-level view of the architecture is shown below
         will be pulled from Kafka. The clicks are sent to Postgres and
         OpenSearch
 
+**Accessing the data ingested into Postgres**
+
+The postgres folder contains the outoput of 3 tables that were generated from our demo
+
+    -   clickstream_events.csv - This file contains simulated user events when navigating the ecommerce platform
+
+    -   sessions_metrics.csv - This file contains the aggregated details of a session
+
+    -   clickstream_events.csv - This file contains the user session details
+
 **Accessing the OpenSearch Dashboard**
 
 1.  Navigate to OpenSearch Dashboards URL (provided in Aiven console)
