@@ -27,7 +27,14 @@ class Transaction_Controller (Event_Consumer):
                 session_id VARCHAR(36) NOT NULL,
                 user_id VARCHAR(36) NOT NULL,
                 event_type VARCHAR(20) NOT NULL,
+                start_time TIMESTAMP NOT NULL,
                 event_time TIMESTAMP NOT NULL,
+                ip_address  TEXT NOT NULL,
+                user_agent TEXT NOT NULL,
+                referrer  TEXT NOT NULL,
+                device_type TEXT NOT NULL,
+                os TEXT NOT NULL,
+                browser TEXT NOT NULL,
                 page_url TEXT NOT NULL,
                 page_title TEXT,
                 geo_location VARCHAR(10),
@@ -81,21 +88,24 @@ class Transaction_Controller (Event_Consumer):
                     self.close_session(session_id)
 
     def process_event(self, event):
+        start_time = datetime.fromisoformat(event['start_time'])
         event_time = datetime.fromisoformat(event['event_time'])
                
         # Insert event into clickstream_events table
         with self.conn.cursor() as cursor:
             cursor.execute("""
                     INSERT INTO clickstream_events (
-                        event_id, session_id, user_id, event_type, event_time, 
-                        page_url, page_title, geo_location, duration, 
+                        event_id, session_id, user_id, event_type, start_time, event_time, 
+                        page_url, page_title, geo_location, duration, ip_address, user_agent, referrer,
+                        device_type, os, browser,
                         utm_source, utm_medium, utm_campaign
-                    ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                    ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
                     ON CONFLICT (event_id) DO NOTHING
                 """, 
             (
-                event['event_id'], event['session_id'], event['user_id'], event['event_type'], event_time,
+                event['event_id'], event['session_id'], event['user_id'], event['event_type'], start_time,event_time,
                 event['page_url'], event['page_title'], event['geo_location'], event['duration'],
+                event['ip_address'], event['user_agent'], event['referrer'], event['device_type'], event['os'], event['browser'],
                 event.get('utm_source'), event.get('utm_medium'), event.get('utm_campaign')
             ))
             self.conn.commit()
@@ -112,7 +122,13 @@ class Transaction_Controller (Event_Consumer):
                 'scrolls': 1 if event['event_type'] == 'scroll' else 0,
                 'form_submits': 1 if event['event_type'] == 'form_submit' else 0,
                 'add_to_cart': 1 if event['event_type'] == 'add_to_cart' else 0,
-                'total_duration': event['duration']
+                'total_duration': event['duration'],
+                'ip_address': event['ip_address'],
+                'user_agent': event['user_agent'],
+                'referrer': event['referrer'],
+                'device_type': event['device_type'],
+                'os': event['os'],
+                'browser': event['browser']
             }
         else:
             # Update existing session
@@ -160,8 +176,9 @@ class Transaction_Controller (Event_Consumer):
                 session_duration = EXCLUDED.session_duration,
                 is_converted = EXCLUDED.is_converted
             """, (
-                session_id, session['user_id'], '192.168.1.1', 'Mozilla/5.0', 'https://example.com',
-                'desktop', 'Windows', 'Chrome', session['start_time'], session['last_activity'],
+                session_id, session['user_id'], session['ip_address'], session['user_agent'], 
+                session['referrer'], session['device_type'], session['os'], 
+                session['browser'], session['start_time'], session['last_activity'],
                 session['page_count'], session_duration, is_converted
             ))
             

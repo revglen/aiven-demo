@@ -37,6 +37,7 @@ class Settings:
 
     NUMBER_OF_MESSAGES=15
     MONTHS_SPAN=5
+    SECONDS_ADD_BETWEEN_EVENTS=2
 
 settings = Settings()
 

@@ -26,8 +26,10 @@ class TransactionProducer:
 
     def generate_click_event(self,user_session=None):
         current_time=datetime.datetime.now().isoformat() 
-        event_time = self._get_random_date_spanning_months()
+        
+        event_time = None
         if not user_session or random.random() < 0.3:  # 30% chance to start a new session
+            event_time = self._get_random_date_spanning_months()
             user_session = {
                 'session_id': self.faker.uuid4(),
                 'user_id': self.faker.uuid4(),
@@ -41,14 +43,25 @@ class TransactionProducer:
                 'last_activity': event_time,
                 'page_count': 0
             }
-               
+        else:
+            #Add a few secs to the secs to the original event time to simulate user clicks
+            tt = datetime.datetime.fromisoformat(user_session['start_time']) + datetime.timedelta(seconds=settings.SECONDS_ADD_BETWEEN_EVENTS)
+            event_time = tt.isoformat()
+
         event_types = ['pageview', 'click', 'scroll', 'form_submit', 'add_to_cart']      
         event = {
             'event_id': self.faker.uuid4(),
             'session_id': user_session['session_id'],
             'user_id': user_session['user_id'],
             'event_type': random.choice(event_types),
-            'event_time': event_time,
+            'start_time': user_session['start_time'],
+            'event_time': event_time,            
+            'ip_address': user_session['ip_address'],
+            'user_agent': user_session['user_agent'],
+            'referrer': user_session['referrer'],
+            'device_type': user_session['device_type'],
+            'os': user_session['os'],
+            'browser': user_session['browser'],
             'page_url': self.faker.uri_path(),
             'page_title': self.faker.sentence(),
             'geo_location': self.faker.country_code(),

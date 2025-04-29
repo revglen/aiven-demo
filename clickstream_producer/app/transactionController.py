@@ -4,6 +4,7 @@ import json
 import time
 from datetime import datetime, timedelta
 from confluent_kafka import Producer
+import traceback
 
 from app.config import settings
 from app.transactionProducer import TransactionProducer
@@ -69,5 +70,6 @@ class TransactionController:
             logger.error("Stopping producer...")
         except Exception as e:
             logger.error(f"Failed to configure producer: {str(e)}")
+            traceback.print_exc()
         finally:
             self.producer.flush()

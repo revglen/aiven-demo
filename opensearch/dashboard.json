@@ -1,0 +1,65 @@
+{
+  "took": 12,
+  "timed_out": false,
+  "_shards": {
+    "total": 1,
+    "successful": 1,
+    "skipped": 0,
+    "failed": 0
+  },
+  "hits": {
+    "total": {
+      "value": 1,
+      "relation": "eq"
+    },
+    "max_score": 1.7917595,
+    "hits": [
+      {
+        "_index": ".kibana_2142005270_avnadmin_1",
+        "_id": "dashboard:13154950-246e-11f0-a889-2fbf7ea05b4b",
+        "_score": 1.7917595,
+        "_source": {
+          "dashboard": {
+            "title": "Clickstream Analytics Dashboard",
+            "hits": 0,
+            "description": "Clickstream Analytics Dashboard",
+            "panelsJSON": """[{"version":"2.17.1","gridData":{"x":0,"y":0,"w":24,"h":15,"i":"cab62ede-6560-4872-9e4f-8b4ca4eab87c"},"panelIndex":"cab62ede-6560-4872-9e4f-8b4ca4eab87c","embeddableConfig":{},"panelRefName":"panel_0"},{"version":"2.17.1","gridData":{"x":24,"y":0,"w":24,"h":15,"i":"1d52b4be-5255-485d-8ffa-53d343061eb7"},"panelIndex":"1d52b4be-5255-485d-8ffa-53d343061eb7","embeddableConfig":{},"panelRefName":"panel_1"},{"version":"2.17.1","gridData":{"x":0,"y":15,"w":24,"h":15,"i":"3c5fbccd-3bae-44e3-8a02-6550c28d11cd"},"panelIndex":"3c5fbccd-3bae-44e3-8a02-6550c28d11cd","embeddableConfig":{"vis":null},"panelRefName":"panel_2"},{"version":"2.17.1","gridData":{"x":24,"y":15,"w":24,"h":15,"i":"a892d394-aebe-4124-9c6a-7afe283afaf0"},"panelIndex":"a892d394-aebe-4124-9c6a-7afe283afaf0","embeddableConfig":{},"panelRefName":"panel_3"}]""",
+            "optionsJSON": """{"useMargins":true,"hidePanelTitles":false}""",
+            "version": 1,
+            "timeRestore": false,
+            "kibanaSavedObjectMeta": {
+              "searchSourceJSON": """{"query":{"query":"","language":"kuery"},"filter":[]}"""
+            }
+          },
+          "type": "dashboard",
+          "references": [
+            {
+              "name": "panel_0",
+              "type": "visualization",
+              "id": "5d4cf2f0-246b-11f0-a889-2fbf7ea05b4b"
+            },
+            {
+              "name": "panel_1",
+              "type": "visualization",
+              "id": "06969d80-246b-11f0-a889-2fbf7ea05b4b"
+            },
+            {
+              "name": "panel_2",
+              "type": "visualization",
+              "id": "6cd19db0-246c-11f0-a889-2fbf7ea05b4b"
+            },
+            {
+              "name": "panel_3",
+              "type": "visualization",
+              "id": "3462b4b0-246b-11f0-a889-2fbf7ea05b4b"
+            }
+          ],
+          "migrationVersion": {
+            "dashboard": "7.9.3"
+          },
+          "updated_at": "2025-04-28T20:19:23.364Z"
+        }
+      }
+    ]
+  }
+}
