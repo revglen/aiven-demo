@@ -1,0 +1,59 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+data/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Environments
+.venv
+.env
+env/
+venv/
+.venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Terraform
+.terraform.lock.hcl
+.terraform/
+terraform.tfstate*
+*.tfplan
+crash.log
+override.tf
+override.tf.json
+*.terraform.tfstate.lock.info
+*.tfvars
+
+connection_details/
+.env
+*.pem
+*.cert
+*.key
+certs/
+bb.txt
+*.log
+

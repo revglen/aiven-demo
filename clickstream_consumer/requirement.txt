@@ -1,0 +1,9 @@
+confluent-kafka==2.10.0
+Faker==37.1.0
+psycopg2-binary==2.9.3
+opensearch-py==2.0.0
+python-dotenv==0.19.2
+python-dateutil==2.8.2
+pycountry==24.6.1
+geographiclib==2.0
+geopy==2.4.1
