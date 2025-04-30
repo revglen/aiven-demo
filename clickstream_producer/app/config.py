@@ -35,7 +35,7 @@ class Settings:
         "default.topic.config": {"acks": "all"}
     }
 
-    NUMBER_OF_MESSAGES=15
+    NUMBER_OF_MESSAGES=5
     MONTHS_SPAN=5
     SECONDS_ADD_BETWEEN_EVENTS=2
 

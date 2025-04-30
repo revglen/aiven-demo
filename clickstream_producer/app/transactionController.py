@@ -61,7 +61,7 @@ class TransactionController:
                     if datetime.fromisoformat(v['last_activity']) > cutoff_time
                 }
                 
-                time.sleep(random.uniform(0.1, 1.0))
+                #time.sleep(random.uniform(0.1, 1.0))
                 count = count + 1
             
             self.producer.commit_transaction()
